@@ -1,0 +1,29 @@
+{
+  "consumerExpApp": {
+    "notification": {
+      "home": {
+        "title": "Notification",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Dodaj Notification",
+        "createOrEditLabel": "Dodaj lub edytuj: Notification",
+        "notFound": "No Notifications found"
+      },
+      "created": "Utworzono nowy obiekt typu Notification z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Notification z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Notification z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Notification {{ id }}?"
+      },
+      "detail": {
+        "title": "Notification"
+      },
+      "id": "ID",
+      "time": "Time",
+      "origin": "Origin",
+      "title": "Title",
+      "message": "Message",
+      "user": "User",
+      "level": "Level"
+    }
+  }
+}
