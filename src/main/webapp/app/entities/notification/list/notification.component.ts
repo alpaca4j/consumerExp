@@ -5,7 +5,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { INotification } from '../notification.model';
 import { NotificationService } from '../service/notification.service';
 import { NotificationDeleteDialogComponent } from '../delete/notification-delete-dialog.component';
-import { interval } from 'rxjs';
+import { interval, Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'jhi-notification',
@@ -52,5 +53,9 @@ export class NotificationComponent implements OnInit {
         this.loadAll();
       }
     });
+  }
+  acknowledge(notification: INotification): void {
+    notification.acknowledged = true;
+    this.notificationService.update(notification).subscribe();
   }
 }
