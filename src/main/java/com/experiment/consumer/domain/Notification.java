@@ -36,6 +36,9 @@ public class Notification implements Serializable {
     @Column(name = "level")
     private String level;
 
+    @Column(name = "acknowledged")
+    private Boolean acknowledged;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -128,6 +131,19 @@ public class Notification implements Serializable {
         this.level = level;
     }
 
+    public Boolean getAcknowledged() {
+        return this.acknowledged;
+    }
+
+    public Notification acknowledged(Boolean acknowledged) {
+        this.acknowledged = acknowledged;
+        return this;
+    }
+
+    public void setAcknowledged(Boolean acknowledged) {
+        this.acknowledged = acknowledged;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -158,6 +174,7 @@ public class Notification implements Serializable {
             ", message='" + getMessage() + "'" +
             ", user='" + getUser() + "'" +
             ", level='" + getLevel() + "'" +
+            ", acknowledged='" + getAcknowledged() + "'" +
             "}";
     }
 }

@@ -32,6 +32,7 @@ describe('Service Tests', () => {
         message: 'AAAAAAA',
         user: 'AAAAAAA',
         level: 'AAAAAAA',
+        acknowledged: false,
       };
     });
 
@@ -84,6 +85,7 @@ describe('Service Tests', () => {
             message: 'BBBBBB',
             user: 'BBBBBB',
             level: 'BBBBBB',
+            acknowledged: true,
           },
           elemDefault
         );
@@ -136,6 +138,7 @@ describe('Service Tests', () => {
             message: 'BBBBBB',
             user: 'BBBBBB',
             level: 'BBBBBB',
+            acknowledged: true,
           },
           elemDefault
         );
@@ -192,7 +195,7 @@ describe('Service Tests', () => {
         });
 
         it('should add only unique Notification to an array', () => {
-          const notificationArray: INotification[] = [{ id: 123 }, { id: 456 }, { id: 20461 }];
+          const notificationArray: INotification[] = [{ id: 123 }, { id: 456 }, { id: 3405 }];
           const notificationCollection: INotification[] = [{ id: 123 }];
           expectedResult = service.addNotificationToCollectionIfMissing(notificationCollection, ...notificationArray);
           expect(expectedResult).toHaveLength(3);

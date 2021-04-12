@@ -8,6 +8,7 @@ export interface INotification {
   message?: string | null;
   user?: string | null;
   level?: string | null;
+  acknowledged?: boolean | null;
 }
 
 export class Notification implements INotification {
@@ -18,8 +19,11 @@ export class Notification implements INotification {
     public title?: string | null,
     public message?: string | null,
     public user?: string | null,
-    public level?: string | null
-  ) {}
+    public level?: string | null,
+    public acknowledged?: boolean | null
+  ) {
+    this.acknowledged = this.acknowledged ?? false;
+  }
 }
 
 export function getNotificationIdentifier(notification: INotification): number | undefined {
