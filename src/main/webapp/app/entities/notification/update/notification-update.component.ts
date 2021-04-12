@@ -26,6 +26,7 @@ export class NotificationUpdateComponent implements OnInit {
     message: [],
     user: [],
     level: [],
+    acknowledged: [],
   });
 
   constructor(protected notificationService: NotificationService, protected activatedRoute: ActivatedRoute, protected fb: FormBuilder) {}
@@ -83,6 +84,7 @@ export class NotificationUpdateComponent implements OnInit {
       message: notification.message,
       user: notification.user,
       level: notification.level,
+      acknowledged: notification.acknowledged,
     });
   }
 
@@ -96,6 +98,7 @@ export class NotificationUpdateComponent implements OnInit {
       message: this.editForm.get(['message'])!.value,
       user: this.editForm.get(['user'])!.value,
       level: this.editForm.get(['level'])!.value,
+      acknowledged: this.editForm.get(['acknowledged'])!.value,
     };
   }
 }

@@ -52,6 +52,9 @@ class NotificationResourceIT {
     private static final String DEFAULT_LEVEL = "AAAAAAAAAA";
     private static final String UPDATED_LEVEL = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_ACKNOWLEDGED = false;
+    private static final Boolean UPDATED_ACKNOWLEDGED = true;
+
     private static final String ENTITY_API_URL = "/api/notifications";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -85,7 +88,8 @@ class NotificationResourceIT {
             .title(DEFAULT_TITLE)
             .message(DEFAULT_MESSAGE)
             .user(DEFAULT_USER)
-            .level(DEFAULT_LEVEL);
+            .level(DEFAULT_LEVEL)
+            .acknowledged(DEFAULT_ACKNOWLEDGED);
         return notification;
     }
 
@@ -102,7 +106,8 @@ class NotificationResourceIT {
             .title(UPDATED_TITLE)
             .message(UPDATED_MESSAGE)
             .user(UPDATED_USER)
-            .level(UPDATED_LEVEL);
+            .level(UPDATED_LEVEL)
+            .acknowledged(UPDATED_ACKNOWLEDGED);
         return notification;
     }
 
@@ -136,6 +141,7 @@ class NotificationResourceIT {
         assertThat(testNotification.getMessage()).isEqualTo(DEFAULT_MESSAGE);
         assertThat(testNotification.getUser()).isEqualTo(DEFAULT_USER);
         assertThat(testNotification.getLevel()).isEqualTo(DEFAULT_LEVEL);
+        assertThat(testNotification.getAcknowledged()).isEqualTo(DEFAULT_ACKNOWLEDGED);
     }
 
     @Test
@@ -179,7 +185,8 @@ class NotificationResourceIT {
             .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
             .andExpect(jsonPath("$.[*].message").value(hasItem(DEFAULT_MESSAGE)))
             .andExpect(jsonPath("$.[*].user").value(hasItem(DEFAULT_USER)))
-            .andExpect(jsonPath("$.[*].level").value(hasItem(DEFAULT_LEVEL)));
+            .andExpect(jsonPath("$.[*].level").value(hasItem(DEFAULT_LEVEL)))
+            .andExpect(jsonPath("$.[*].acknowledged").value(hasItem(DEFAULT_ACKNOWLEDGED.booleanValue())));
     }
 
     @Test
@@ -199,7 +206,8 @@ class NotificationResourceIT {
             .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
             .andExpect(jsonPath("$.message").value(DEFAULT_MESSAGE))
             .andExpect(jsonPath("$.user").value(DEFAULT_USER))
-            .andExpect(jsonPath("$.level").value(DEFAULT_LEVEL));
+            .andExpect(jsonPath("$.level").value(DEFAULT_LEVEL))
+            .andExpect(jsonPath("$.acknowledged").value(DEFAULT_ACKNOWLEDGED.booleanValue()));
     }
 
     @Test
@@ -227,7 +235,8 @@ class NotificationResourceIT {
             .title(UPDATED_TITLE)
             .message(UPDATED_MESSAGE)
             .user(UPDATED_USER)
-            .level(UPDATED_LEVEL);
+            .level(UPDATED_LEVEL)
+            .acknowledged(UPDATED_ACKNOWLEDGED);
         NotificationDTO notificationDTO = notificationMapper.toDto(updatedNotification);
 
         restNotificationMockMvc
@@ -249,6 +258,7 @@ class NotificationResourceIT {
         assertThat(testNotification.getMessage()).isEqualTo(UPDATED_MESSAGE);
         assertThat(testNotification.getUser()).isEqualTo(UPDATED_USER);
         assertThat(testNotification.getLevel()).isEqualTo(UPDATED_LEVEL);
+        assertThat(testNotification.getAcknowledged()).isEqualTo(UPDATED_ACKNOWLEDGED);
     }
 
     @Test
@@ -356,6 +366,7 @@ class NotificationResourceIT {
         assertThat(testNotification.getMessage()).isEqualTo(DEFAULT_MESSAGE);
         assertThat(testNotification.getUser()).isEqualTo(DEFAULT_USER);
         assertThat(testNotification.getLevel()).isEqualTo(UPDATED_LEVEL);
+        assertThat(testNotification.getAcknowledged()).isEqualTo(DEFAULT_ACKNOWLEDGED);
     }
 
     @Test
@@ -376,7 +387,8 @@ class NotificationResourceIT {
             .title(UPDATED_TITLE)
             .message(UPDATED_MESSAGE)
             .user(UPDATED_USER)
-            .level(UPDATED_LEVEL);
+            .level(UPDATED_LEVEL)
+            .acknowledged(UPDATED_ACKNOWLEDGED);
 
         restNotificationMockMvc
             .perform(
@@ -397,6 +409,7 @@ class NotificationResourceIT {
         assertThat(testNotification.getMessage()).isEqualTo(UPDATED_MESSAGE);
         assertThat(testNotification.getUser()).isEqualTo(UPDATED_USER);
         assertThat(testNotification.getLevel()).isEqualTo(UPDATED_LEVEL);
+        assertThat(testNotification.getAcknowledged()).isEqualTo(UPDATED_ACKNOWLEDGED);
     }
 
     @Test

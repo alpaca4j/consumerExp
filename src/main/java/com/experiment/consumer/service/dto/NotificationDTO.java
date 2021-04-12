@@ -23,6 +23,8 @@ public class NotificationDTO implements Serializable {
 
     private String level;
 
+    private Boolean acknowledged;
+
     public Long getId() {
         return id;
     }
@@ -79,6 +81,14 @@ public class NotificationDTO implements Serializable {
         this.level = level;
     }
 
+    public Boolean getAcknowledged() {
+        return acknowledged;
+    }
+
+    public void setAcknowledged(Boolean acknowledged) {
+        this.acknowledged = acknowledged;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -111,6 +121,7 @@ public class NotificationDTO implements Serializable {
             ", message='" + getMessage() + "'" +
             ", user='" + getUser() + "'" +
             ", level='" + getLevel() + "'" +
+            ", acknowledged='" + getAcknowledged() + "'" +
             "}";
     }
 }

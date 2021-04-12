@@ -23,7 +23,8 @@
       "title": "Title",
       "message": "Message",
       "user": "User",
-      "level": "Level"
+      "level": "Level",
+      "acknowledged": "Acknowledged"
     }
   }
 }
