@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { INotification } from '../notification.model';
 import { NotificationService } from '../service/notification.service';
 import { NotificationDeleteDialogComponent } from '../delete/notification-delete-dialog.component';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'jhi-notification',
@@ -14,7 +15,11 @@ export class NotificationComponent implements OnInit {
   notifications?: INotification[];
   isLoading = false;
 
-  constructor(protected notificationService: NotificationService, protected modalService: NgbModal) {}
+  constructor(protected notificationService: NotificationService, protected modalService: NgbModal) {
+    interval(3000).subscribe(x => {
+      this.loadAll();
+    });
+  }
 
   loadAll(): void {
     this.isLoading = true;
