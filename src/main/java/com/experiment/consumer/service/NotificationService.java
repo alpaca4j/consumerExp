@@ -2,6 +2,7 @@ package com.experiment.consumer.service;
 
 import com.experiment.consumer.domain.Notification;
 import com.experiment.consumer.repository.NotificationRepository;
+import com.experiment.consumer.security.SecurityUtils;
 import com.experiment.consumer.service.dto.NotificationDTO;
 import com.experiment.consumer.service.mapper.NotificationMapper;
 import java.util.LinkedList;
@@ -73,7 +74,13 @@ public class NotificationService {
     @Transactional(readOnly = true)
     public List<NotificationDTO> findAll() {
         log.debug("Request to get all Notifications");
-        return notificationRepository.findAll().stream().map(notificationMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        return notificationRepository
+            .findAll()
+            .stream()
+            .filter(x -> !x.getAcknowledged())
+            .filter(x -> x.getUser().equalsIgnoreCase(SecurityUtils.getCurrentUserLogin().get()))
+            .map(notificationMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
