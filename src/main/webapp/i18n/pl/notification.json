@@ -15,7 +15,7 @@
         "question": "Czy na pewno chcesz usunąć Notification {{ id }}?"
       },
       "detail": {
-        "title": "Notification"
+        "title": "Notifications"
       },
       "id": "ID",
       "time": "Time",
