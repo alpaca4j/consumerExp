@@ -2,7 +2,7 @@
 version: '3.8'
 services:
   consumerexp-app:
-    image: consumerexp
+    image: alpaca4j/consumerexp:borat-0.0.3
     environment:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
       - SPRING_PROFILES_ACTIVE=prod,api-docs
@@ -10,7 +10,7 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:mariadb://consumerexp-mariadb:3306/consumerexp?useLegacyDatetimeCode=false&serverTimezone=UTC
       - SPRING_LIQUIBASE_URL=jdbc:mariadb://consumerexp-mariadb:3306/consumerexp?useLegacyDatetimeCode=false&serverTimezone=UTC
       - JHIPSTER_SLEEP=120 # gives time for mariadb server to start
-      - KAFKA_BOOTSTRAPSERVERS=kafka:9092
+      - KAFKA_BOOTSTRAPSERVERS=kafka:29092
     # If you want to expose these ports outside your dev PC,
     # remove the "127.0.0.1:" prefix
     ports:
@@ -46,3 +46,12 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
+  producer-rest:
+    image: khavert/producer-rest:latest
+    hostname: producer-rest
+    container_name: producer-rest
+    environment:
+      BOOTSTRAP_SERVERS: kafka:29092
+      TOPIC: notifications
+    ports:
+      - 8090:8080
